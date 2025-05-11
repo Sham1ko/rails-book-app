@@ -1,0 +1,41 @@
+<div
+  class="max-w-xl mx-auto p-6  space-y-6"
+>
+  <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">
+    Add a New Book
+  </h1>
+
+  <%= form_with(model: @book, local: true, class: "space-y-5") do |f| %>
+  <div>
+    <%= f.label :title, class: "block text-md font-medium text-gray-700
+    dark:text-gray-300 mb-1" %> 
+    <%= f.text_field :title, class: "block w-full
+    rounded-md border border-gray-100 dark:border-gray-600 bg-white dark:bg-gray-900
+    text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring focus:ring-violet-300" %>
+  </div>
+
+  <div>
+    <%= f.label :author, class: "block text-sm font-medium text-gray-700
+    dark:text-gray-300 mb-1" %> 
+    <%= f.text_field :author, class: "block w-full
+    rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900
+    text-gray-900 dark:text-white shadow-sm focus:border-blue-500" %>
+  </div>
+
+  <div>
+    <%= f.label :description, class: "block text-sm font-medium text-gray-700
+    dark:text-gray-300 mb-1" %> 
+    <%= f.text_area :description, rows: 5, class:
+    "block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white
+    dark:bg-gray-900 text-gray-900 dark:text-white shadow-sm
+    focus:border-blue-500" %>
+  </div>
+
+  <div>
+    <%= f.submit "Create Book", class: "inline-flex items-center px-5 py-2
+    bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700
+    focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+    shadow transition" %>
+  </div>
+  <% end %>
+</div>
