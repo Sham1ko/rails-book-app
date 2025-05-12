@@ -13,9 +13,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :books do
-    resources :comments, only: [:create]
+    resources :comments, only: [ :create ]
   end
-  
-  root "books#index"
 
+  root "books#index"
 end

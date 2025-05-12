@@ -23,41 +23,18 @@
             <%= link_to "📚 BookApp", root_path, class: "hover:underline" %>
           </h1>
           <button
-            id="theme-toggle"
+            data-controller="theme"
+            data-action="click->theme#toggle"
             class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded hover:shadow transition"
           >
             Toggle Theme
+            <span data-theme-target="icon">🌞</span>
           </button>
         </div>
       </header>
 
       <!-- Main content -->
-      <main
-        class="flex-1 flex items-center justify-center px-4 bg-gray-50 dark:bg-gray-800"
-      >
-        <div
-          class="w-full max-w-5xl py-6 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm"
-        >
-          <%= yield %>
-        </div>
-      </main>
+      <main class="flex-1 bg-gray-50 dark:bg-gray-800"><%= yield %></main>
     </div>
-    <!-- Theme toggle script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const toggleBtn = document.getElementById("theme-toggle");
-        const html = document.documentElement;
-
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme) {
-          html.classList.toggle("dark", savedTheme === "dark");
-        }
-
-        toggleBtn.addEventListener("click", () => {
-          const isDark = html.classList.toggle("dark");
-          localStorage.setItem("theme", isDark ? "dark" : "light");
-        });
-      });
-    </script>
   </body>
 </html>

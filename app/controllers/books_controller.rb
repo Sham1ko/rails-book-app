@@ -10,7 +10,7 @@ class BooksController < ApplicationController
     def create
         @book = Book.new(book_params)
         if @book.save
-            redirect_to @book, notice: 'Book was successfully created.'
+            redirect_to @book, notice: "Book was successfully created."
         else
             render :new
         end
@@ -27,6 +27,4 @@ class BooksController < ApplicationController
     def book_params
         params.require(:book).permit(:title, :author, :description, :published_date)
     end
-
-
 end
