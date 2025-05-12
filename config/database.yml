@@ -5,16 +5,21 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV["POSTGRES_DB"] %>
-  username: <%= ENV.fetch("PGUSER", "sham") %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
-  host: <%= ENV["POSTGRES_HOST"] %>
-  port: <%= ENV.fetch("POSTGRES_PORT", 5432) %>
+  # database: <%= ENV["POSTGRES_DB"] %>
+  # username: <%= ENV.fetch("PGUSER", "sham") %>
+  # password: <%= ENV["POSTGRES_PASSWORD"] %>
+  # host: <%= ENV["POSTGRES_HOST"] %>
+  # port: <%= ENV.fetch("POSTGRES_PORT", 5432) %>
+  url: <%= ENV["DATABASE_URL"] %>
 
 test:
   <<: *default
   database: rails_book_app_test
 
 production:
-  <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  primary: &primary
+    <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
+
+  cable:
+    <<: *primary
