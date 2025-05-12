@@ -12,23 +12,37 @@
 
   <% if @books.any? %>
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-    <% @books.each do |book| %>
+    <% @books.each do |book| %> <%= link_to book_path(book), class: "block p-6
+    rounded-xl border border-gray-200 dark:border-gray-700 bg-white
+    dark:bg-gray-900 shadow-sm hover:shadow-md transition group" do %>
+
+    <!-- Book cover -->
     <div
-      class="p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition"
+      class="w-24 h-36 mb-4 rounded shadow-md flex flex-col items-center justify-center text-white text-center px-2"
+      style="
+        background-color: <%= [ '#4B5563', '#F87171', '#10B981',
+          '#6366F1'].sample %>;
+      "
     >
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-1">
-        <%= book.title %>
-      </h2>
-      <p class="text-sm text-gray-500 dark:text-gray-400 italic mb-2">
-        by <%= book.author %>
+      <p class="text-xs font-semibold leading-tight">
+        <%= truncate(book.title, length: 40) %>
       </p>
-      <p class="text-gray-700 dark:text-gray-300 mb-4">
-        <%= truncate(book.description, length: 150) %>
-      </p>
-      <%= link_to "View", book_path(book), class: "text-sm font-medium
-      text-blue-600 dark:text-blue-400 hover:underline" %>
-    </div>
-    <% end %>
+      <p class="text-[11px] mt-2 opacity-80"><%= book.author %></p>
+    </div> 
+
+    <!-- Book info -->
+    <h2
+      class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-1 group-hover:underline"
+    >
+      <%= book.title %>
+    </h2>
+    <p class="text-sm text-gray-500 dark:text-gray-400 italic mb-2">
+      by <%= book.author %>
+    </p>
+    <p class="text-gray-700 dark:text-gray-300 mb-2 text-sm leading-relaxed">
+      <%= truncate(book.description, length: 100) %>
+    </p>
+    <% end %> <% end %>
   </div>
   <% else %>
   <p class="text-gray-500 dark:text-gray-400 mt-10 text-center">
